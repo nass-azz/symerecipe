@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SymRecipe - Nouvelle Recette{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <h1 class="mb-4">Création d'une recette</h1>
+
+    <form action="{{ path('recipe_new') }}" method="POST">
+        {{ form_errors(form) }}
+
+        {{ form_row(form.name) }}
+        {{ form_row(form.time) }}
+        {{ form_row(form.nbPersons) }}
+        {{ form_row(form.difficulty) }}
+        {{ form_row(form.description) }}
+        {{ form_row(form.price) }}
+        {{ form_row(form.isFavorite) }}
+        
+        <div class="card bg-light p-3 mt-4">
+            {{ form_row(form.ingredients) }}
+        </div>
+
+        {{ form_row(form.submit) }}
+        {{ form_rest(form) }}
+    </form>
+</div>
+{% endblock %}

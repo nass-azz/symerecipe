@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SymRecipe - Mes recettes{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    {% if not recipes.items is empty %}
+        <h1 class="mb-4">Mes recettes</h1>
+
+        {# Message flash de succès si besoin #}
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <table class="table table-hover mt-4">
+            <thead>
+                <tr class="table-primary">
+                    <th scope="col">Numéro</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prix</th>
+                    <th scope="col">Difficulté</th>
+                    <th scope="col">Date de création</th>
+                    <th scope="col">Édition</th>
+                    <th scope="col">Suppression</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for recipe in recipes %}
+                    <tr class="table-light">
+                        <th scope="row">{{ recipe.id }}</th>
+                        <td>{{ recipe.name }}</td>
+                        {# Si le prix est null, on affiche "Non renseigné", sinon on met la valeur #}
+                        <td>{{ recipe.price ? recipe.price : 'Non renseigné' }}</td>
+                        {# Idem pour la difficulté #}
+                        <td>{{ recipe.difficulty ? recipe.difficulty : 'Non renseigné' }}</td>
+                        <td>{{ recipe.createdAt|date('d/m/Y') }}</td>
+                        <td>{{ 'TODO' }}</td>
+                        <td>{{ 'TODO' }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        {# Le bloc pour afficher la pagination (les boutons Page 1, 2, 3...) #}
+        <div class="navigation d-flex justify-content-center mt-4">
+            {{ knp_pagination_render(recipes) }}
+        </div>
+
+    {% else %}
+        <div class="alert alert-warning mt-4">
+            <p>Il n'y a pas encore de recettes enregistrées.</p>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
