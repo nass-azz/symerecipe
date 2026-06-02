@@ -6,8 +6,7 @@
 <div class="container mt-4">
     <h1 class="mb-4">Création d'une recette</h1>
 
-    <form action="{{ path('recipe_new') }}" method="POST">
-        {{ form_errors(form) }}
+<form action="{{ path('recipe_new') }}" method="POST" data-turbo="false">        {{ form_errors(form) }}
 
         {{ form_row(form.name) }}
         {{ form_row(form.time) }}
@@ -17,9 +16,27 @@
         {{ form_row(form.price) }}
         {{ form_row(form.isFavorite) }}
         
-        <div class="card bg-light p-3 mt-4">
-            {{ form_row(form.ingredients) }}
-        </div>
+       <div class="card bg-light p-4 mt-4 shadow-sm">
+    <h3 class="h5 mb-3 text-secondary">
+        <i class="bi bi-egg-fried me-2"></i>{{ form_label(form.ingredients) }}
+    </h3>
+    
+    {{ form_errors(form.ingredients) }}
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+        {% for ingredientField in form.ingredients %}
+            <div class="col">
+                <div class="form-check form-check-inline p-2 border rounded bg-white h-100 d-flex align-items-center justify-content-start style-ingredient-card">
+                    {# On désactive le rendu automatique du label Bootstrap brut pour le styliser nous-mêmes #}
+                    {{ form_widget(ingredientField, {'attr': {'class': 'form-check-input ms-2 me-3'}}) }}
+                    <label class="form-check-label mb-0 w-100 text-dark cursor-pointer" for="{{ ingredientField.vars.id }}">
+                        {{ ingredientField.vars.label }}
+                    </label>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
 
         {{ form_row(form.submit) }}
         {{ form_rest(form) }}
