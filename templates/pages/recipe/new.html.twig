@@ -6,7 +6,8 @@
 <div class="container mt-4">
     <h1 class="mb-4">Création d'une recette</h1>
 
-<form action="{{ path('recipe_new') }}" method="POST" data-turbo="false">        {{ form_errors(form) }}
+<form action="{{ path('recipe_new') }}" method="POST" >        
+        {{ form_errors(form) }}
 
         {{ form_row(form.name) }}
         {{ form_row(form.time) }}
