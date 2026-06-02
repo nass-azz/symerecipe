@@ -43,6 +43,8 @@ final class IngredientController extends AbstractController
             $ingredient = $form->getData();
             $manager->persist($ingredient);
             $manager->flush();
+
+            $this->addFlash('success', 'Ingrédient ajouté avec succès !');
             return $this->redirectToRoute('app_ingredient');
         }
 
