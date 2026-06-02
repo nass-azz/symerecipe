@@ -1,0 +1,33 @@
+{% extends "base.html.twig" %}
+
+{% block title %}SymRecipe - Modifier un ingrédient{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    {# Fonctionne parfaitement si 'ingredient' est passé au render() #}
+    <h1 class="mb-4">Modifier l'ingrédient "{{ ingredient.name }}"</h1>
+
+    <form action="{{ path('ingredient_edit', {'id': ingredient.id}) }}" method="POST">
+        
+        <div class="form-group mb-3">
+            {{ form_label(form.name) }}
+            {{ form_widget(form.name) }}
+            {{ form_errors(form.name) }}
+        </div>
+
+        <div class="form-group mb-3">
+            {{ form_label(form.price) }}
+            {{ form_widget(form.price) }}
+            {{ form_errors(form.price) }}
+        </div>
+
+        <div class="form-group mt-4">
+            {{ form_widget(form.submit) }}
+        </div>
+
+        {# Jeton CSRF indispensable #}
+        {{ form_rest(form) }}
+        
+    </form>
+</div>
+{% endblock %}

@@ -52,4 +52,26 @@ final class IngredientController extends AbstractController
             'form' => $form,
         ]);
     }
+    #[Route('/ingredient/{id}/edit', name: 'ingredient_edit', methods: ['GET', 'POST'])] 
+    public function edit (
+        request $request,
+        Ingredient $ingredient,
+        \Doctrine\ORM\EntityManagerInterface $manager
+    ): Response {
+        $form = $this->createForm(IngredientTypePhpType::class, $ingredient);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $ingredient = $form->getData();
+            $manager->flush();
+            
+            $this->addFlash('success', 'Ingrédient modifié avec succès !');
+            return $this->redirectToRoute('app_ingredient');
+        }
+        return $this->render('pages/ingredient/edit.html.twig', [
+            'form' => $form,
+            'ingredient' => $ingredient,
+        ]);
+        }
+
+    
 }

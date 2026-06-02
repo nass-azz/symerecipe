@@ -1,7 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}SymRecipe - Mes ingrédients{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        /* Styles personnalisés pour la page des ingrédients */
+        .table-hover tbody tr:hover {
+            background-color: #f8f9fa;
+        }
 
+    </style>
+{% endblock %}
 {% block body %}
 <div class="container mt-4">
 
@@ -38,6 +47,11 @@
                         {# Rendu du prix propre #}
                         <td>{{ ingredient.price }} €</td>
                         <td>{{ ingredient.createdAt|date('d/m/Y H:i') }}</td>
+                        <td>
+                            <a href="{{ path('ingredient_edit', {'id': ingredient.id}) }}" class="btn btn-sm btn-primary">
+                                Modifier
+                            </a>
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>

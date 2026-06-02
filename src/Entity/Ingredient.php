@@ -2,13 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\IngridientRepository;
+use App\Repository\IngredientRepository;
 use Doctrine\ORM\Mapping as ORM;
-use symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints as Assert;
 
-#[ORM\Entity(repositoryClass: IngridientRepository::class)]
+#[ORM\Entity(repositoryClass: IngredientRepository::class)]
 class Ingredient
 {
+    // Le reste de votre code (id, name, price, createdAt...) est parfait !
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
