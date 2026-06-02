@@ -2,7 +2,9 @@
 
 namespace App\Repository;
 
-use App\Entity\Ingridient;
+// ❌ Avant : use App\Entity\Ingridient;
+//  Après : On cible la bonne entité bien orthographiée
+use App\Entity\Ingredient;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -31,7 +33,7 @@ class IngredientRepository extends ServiceEntityRepository
     //        ;
     //    }
 
-    //    public function findOneBySomeField($value): ?Ingridient
+    //    public function findOneBySomeField($value): ?Ingredient
     //    {
     //        return $this->createQueryBuilder('i')
     //            ->andWhere('i.exampleField = :val')
