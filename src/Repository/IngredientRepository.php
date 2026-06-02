@@ -7,17 +7,17 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Ingridient>
+ * @extends ServiceEntityRepository<Ingredient>
  */
-class IngridientRepository extends ServiceEntityRepository
+class IngredientRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Ingridient::class);
+        parent::__construct($registry, Ingredient::class);
     }
 
     //    /**
-    //     * @return Ingridient[] Returns an array of Ingridient objects
+    //     * @return Ingredient[] Returns an array of Ingredient objects
     //     */
     //    public function findByExampleField($value): array
     //    {

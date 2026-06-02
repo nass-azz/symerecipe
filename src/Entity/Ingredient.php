@@ -4,9 +4,10 @@ namespace App\Entity;
 
 use App\Repository\IngridientRepository;
 use Doctrine\ORM\Mapping as ORM;
+use symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: IngridientRepository::class)]
-class Ingridient
+class Ingredient
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -14,12 +15,18 @@ class Ingridient
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 2, max: 255)]
     private ?string $name = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank]
+    #[Assert\GreaterThan(0)]
+    #[Assert\LessThan(200)]
     private ?float $price = null;
 
     #[ORM\Column]
+    #[assert\NotBlank]
     private ?\DateTimeImmutable $createdAt = null;
 
     public function getId(): ?int
@@ -61,5 +68,9 @@ class Ingridient
         $this->createdAt = $createdAt;
 
         return $this;
+    }
+    public function __construct()
+    {
+        $this->createdAt = new \DateTimeImmutable();
     }
 }
